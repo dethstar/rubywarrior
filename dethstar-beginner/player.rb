@@ -1,14 +1,21 @@
 class Player
+  @health=20
   def play_turn(warrior)
+    @health=warrior.health if @health==nil
     if warrior.feel.enemy?
-          warrior.attack!
+      warrior.attack!
     else
-      if warrior.health > 2
+      if wasHurt?(warrior.health)
         warrior.walk!
-      else
+      elsif warrior.health<12
         warrior.rest!
+      else
+        warrior.walk!
       end
     end
-    # add your code here
+    @health=warrior.health
+  end
+  def wasHurt?(health)
+        return health < @health
   end
 end
