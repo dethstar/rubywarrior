@@ -4,10 +4,12 @@ class Player
     @health=warrior.health if @health==nil
     if warrior.feel.enemy?
       warrior.attack!
+    elsif warrior.feel.captive?
+      warrior.rescue!
     else
       if wasHurt?(warrior.health)
         warrior.walk!
-      elsif warrior.health<12
+      elsif warrior.health<15
         warrior.rest!
       else
         warrior.walk!
